@@ -1,13 +1,15 @@
 ---
 title: "lab1markdown"
 author: "Jimmy, Gabrielle, and Zev"
-date-format: short 
-format: 
-  pdf: 
+date-format: short
+output:
+  pdf_document: default
+  html_document: default
+editor: visual
+format:
+  pdf:
     documentclass: scrartcl
     classoption: onecolumn
-editor: visual
-output: html_document
 ---
 
 ---
@@ -20,7 +22,6 @@ format:
     documentclass: scrartcl
     classoption: onecolumn
 editor: visual
-output: html_document
 ---
 
 ```{r setup, include=FALSE}
