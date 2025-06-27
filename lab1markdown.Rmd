@@ -40,7 +40,7 @@ The study's target population is the U.S. citizens who were 18 or older living i
 Respondents were asked a series of questions that relates to the respondents opinion on electoral behavior, policy attitudes, and demographic characteristics.
 
 \
-Test set up:
+# Test Set Up and Hypothesis:
 
 Let Xi​ = preference for **public school spending (**V241264)**, where:**
 
