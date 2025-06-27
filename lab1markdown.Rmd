@@ -57,7 +57,10 @@ Let Di = Xi - Yi, with interpretation:
 
 **Test 1:**
 
-Null hypothesis (Ho): average Di \| i in Democrats = 0
+Null hypothesis (Ho): 
+$$
+H_{0,\mathrm{Dem}}:\;P(D_i < 0) \;=\; P(D_i > 0)
+$$
 
 Alternative hypothesis (H1): average Di \| i in Democrats \< 0 , favoring public schools
 
@@ -67,6 +70,13 @@ Alternative hypothesis (H1): average Di \| i in Democrats \< 0 , favoring public
 Alternative hypothesis (H1): average Di \| i in Republicans \> 0 , favoring social security
 
 \
+# Test Selection and Evaluation of Assumptions
+
+We decided to use the Wilcoxon signed test (paired, one-sided) because this allows us to compare directional results from the same respondents. We favored the signed test instead of the signed-rank test as the responses are ordinal.
+
+Assumption 1. Metric scale
+-   
+
 \
 
 # Data Wrangling 
