@@ -57,17 +57,15 @@ Let Di = Xi - Yi, with interpretation:
 
 **Test 1:**
 
-Null hypothesis (Ho): 
-$$
-H_{0,\mathrm{Dem}}:\;P(D_i < 0) \;=\; P(D_i > 0)
-$$
+** Null hypothesis (Ho): P(Di \<0) \| i in Democrats = P(Di \>0) \| i in Democrats
 
-Alternative hypothesis (H1): average Di \| i in Democrats \< 0 , favoring public schools
+
+Alternative hypothesis (H1): P(Di \<0) \| i in Democrats \> P(Di \>0) \| i in Democrats
 
 **Test 2:\
-** Null hypothesis (Ho): average Di \| i in Republicans = 0
+** Null hypothesis (Ho): P(Di \<0) \| i in Republicans = P(Di \>0) \| i in Republicans
 
-Alternative hypothesis (H1): average Di \| i in Republicans \> 0 , favoring social security
+Alternative hypothesis (H1): P(Di \<0) \| i in Republicans \< P(Di \>0) \| i in Republicans
 
 \
 # Test Selection and Evaluation of Assumptions
