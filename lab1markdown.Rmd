@@ -49,15 +49,11 @@ Let Yi​ = preference for **social security spending (**V241261)**,** with the 
 
 Let Di = Xi - Yi, with interpretation:
 
--   -2 represents public schools =1 (Increase) **vs.** social security =3 (Decrease): extremely more support for schools
-
--   -1 represents public schools =1 (Increase) **vs.** social security =2 (Same), **or** public schools =2 (Same) **vs.** social security =3 (Dec): more support for schools
+-   (-) neagtive represents response to public schools is higher than response to social security: more support for schools
 
 -   0 represents public schools and social security  coded the same: equal support (both Increase, both Same, or both Decrease)
 
--   1 represents public schools =2 (Same) **vs.** social security =1 (Increase), **or** public schools =3 (Dec) **vs.** social security =2 (Same): more support for Social Security
-
--   2 represents public schools =3 (Decrease) **vs.** social security =1 (Increase): extremely more support for Social Security
+-   (+) positive represents response to social security is higher than response to public school: more support for social security
 
 **Test 1:**
 
