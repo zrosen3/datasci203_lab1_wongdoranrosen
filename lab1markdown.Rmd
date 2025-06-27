@@ -32,7 +32,14 @@ editor: visual
 We suspect that Democrats will favor increasing spending in public schools more than social security. Whereas Republicans will be the other way around. So we will set up two hypothesis test using the Wilcoxon Signed Rank test.
 
 \
+# Data Understanding
+The data for this analysis is based on the American National Election Studies (ANES) 2024 Time Series Study, a continuation of the series of election studies conducted since 1948. The study used a mixed-mode design including in-person, internet, video, telephone, and paper-and-pencil interviewing.
 
+The study's target population is the U.S. citizens who were 18 or older living in the US immediately prior to the 2016 presidential election. 
+
+Respondents were asked a series of questions that relates to the respondents opinion on electoral behavior, policy attitudes, and demographic characteristics.
+
+\
 Test set up:
 
 Let Xi​ = preference for **public school spending (**V241264)**, where:**
@@ -57,23 +64,29 @@ Let Di = Xi - Yi, with interpretation:
 
 **Test 1:**
 
-** Null hypothesis (Ho): P(Di \<0) \| i in Democrats = P(Di \>0) \| i in Democrats
+** Null hypothesis (Ho): P(Di <0) | i in Democrats = P(Di >0) | i in Democrats
 
 
-Alternative hypothesis (H1): P(Di \<0) \| i in Democrats \> P(Di \>0) \| i in Democrats
+Alternative hypothesis (H1): P(Di <0) | i in Democrats > P(Di >0) | i in Democrats
 
 **Test 2:\
-** Null hypothesis (Ho): P(Di \<0) \| i in Republicans = P(Di \>0) \| i in Republicans
+** Null hypothesis (Ho): P(Di <0) | i in Republicans = P(Di >0) | i in Republicans
 
-Alternative hypothesis (H1): P(Di \<0) \| i in Republicans \< P(Di \>0) \| i in Republicans
+Alternative hypothesis (H1): P(Di <0) | i in Republicans < P(Di >0) | i in Republicans
 
 \
 # Test Selection and Evaluation of Assumptions
 
 We decided to use the Wilcoxon signed test (paired, one-sided) because this allows us to compare directional results from the same respondents. We favored the signed test instead of the signed-rank test as the responses are ordinal.
 
-Assumption 1. Metric scale
--   
+Assumption 1. (At least) Ordinal Scale
+-   Xi and Yi are both measured on the same ordinal scale 
+-   We recoded the the responses to natural order (1 = Increased , 2 = Kept the same , 3 = Decreased)
+
+Assumption 2. IID
+-   ANES respondents were sampled independently
+-   Each paired responses are from the same respondents
+
 
 \
 
