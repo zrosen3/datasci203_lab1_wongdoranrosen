@@ -85,22 +85,7 @@ median(republicans$Difference)
 ```
 
 
-```{r, include = FALSE, echo = FALSE}
-#Sign test for democrats
-#Alternative hypothesis is public school response  < social security 
-#Alternative hypothesis is  public school support > social security support 
-# Count number of negative differences
 
-# Total number of non-zero (non-tied) differences
-binom.test(sum(democrats$Difference < 0, na.rm = TRUE), n = sum(democrats$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
-
-
-#Sign test for republicans
-#Alternative hypothesis is public school response  > social security 
-#ie public school support < social security support
-binom.test(sum(republicans$Difference > 0, na.rm = TRUE), n = sum(republicans$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
-
-```
 
 # Data Understanding 
 
@@ -152,5 +137,22 @@ Assumption 2. IID - ANES respondents were sampled independently - Each paired re
 
 
 # Results
+
+```{r, include = FALSE, echo = FALSE}
+#Sign test for democrats
+#Alternative hypothesis is public school response  < social security 
+#Alternative hypothesis is  public school support > social security support 
+# Count number of negative differences
+
+# Total number of non-zero (non-tied) differences
+binom.test(sum(democrats$Difference < 0, na.rm = TRUE), n = sum(democrats$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
+
+
+#Sign test for republicans
+#Alternative hypothesis is public school response  > social security 
+#ie public school support < social security support
+binom.test(sum(republicans$Difference > 0, na.rm = TRUE), n = sum(republicans$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
+
+```
 
 # Discussion
