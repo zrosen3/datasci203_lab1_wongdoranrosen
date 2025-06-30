@@ -27,17 +27,12 @@ editor: visual
 \newpage
 
 # Introduction
-We suspect that Democrats will favor increasing spending in public schools more than social security. Whereas Republicans will be the other way around. So we will set up two hypothesis test using the Wilcoxon Signed Rank test.
-Political division in the United States is on the rise (Abramowitz & Saunders, 2008; Jones, 2024). As polarization comes to a head in the current U.S. political climate artisanship has made its way into education, too, with state capitols becoming partisan battlegrounds over ideological issues compounded in intensity by their relation to children.
-A partisan issue of our time is how American history should be taught, specifically as it pertains to narratives around race and the experience of Black Americans. With many Republican-led states passing legislation to ban Critical Race Theory in public schools, the nature of public education’s role in society comes into question (UCLA School of Law, 2023). What is the goal of public education? In a larger sense, do Democrats and Republicans have different views on education?
-We may use voting behavior as a proxy for those who self-affiliate towards the right or left.
+
+We suspect that Democrats will favor increasing spending in public schools more than social security. Whereas Republicans will be the other way around. So we will set up two hypothesis test using the Wilcoxon Signed Rank test. Political division in the United States is on the rise (Abramowitz & Saunders, 2008; Jones, 2024). As polarization comes to a head in the current U.S. political climate artisanship has made its way into education, too, with state capitols becoming partisan battlegrounds over ideological issues compounded in intensity by their relation to children. A partisan issue of our time is how American history should be taught, specifically as it pertains to narratives around race and the experience of Black Americans. With many Republican-led states passing legislation to ban Critical Race Theory in public schools, the nature of public education’s role in society comes into question (UCLA School of Law, 2023). What is the goal of public education? In a larger sense, do Democrats and Republicans have different views on education? We may use voting behavior as a proxy for those who self-affiliate towards the right or left.
 
 # Conceptualization and Operationalization
-Question: Do Democratic and Republican voters have different views of education?
-We interpret “voters” as survey respondents who indicated they identified more with either the Democratic party or the Republican party, whether this affiliation was strong or weak. [if space – justify why this flattening of the term “voters"] One way voters’ (i.e., survey respondents who identify themselves as Republican or Democrat) views and values are expressed are through attitudes on government spending. The ANES includes questions on federal spending for Social Security and public schools. We propose to use attitudes towards government spending on public schools to be our proxy towards views on education more broadly; specifically, we assume that voters who prioritize education are more likely to have indicated that “Federal spending on public schools should be increased.”
-“Views of education” are far-reaching and nuanced, and cannot adequately be expressed through voting behavior alone; some voters may value education highly, but it may not be reflected at the ballot box because they are a single-issue voter (“32% of U.S. voters say they would only vote for a candidate for major office who shares their views on abortion,” says Gallup). Others may value education, but believe in private education rather than public schools. For operationalization, we use survey respondents’ reported attitudes towards federal spending on public schools, relative to other types of federal spending, as a proxy for views on education.
-The subject of government spending is itself a barometer of political affiliation (Johnson, 2018). Therefore, our test will measure respondents’ relative preference toward spending; in this case, on education or on other government programs (Social Security).
-We identify Republicans and Democrats via the feature V241227 (PARTY ID), which summarizes respondents’ party affiliation via a 1-7 scale: 1 indicates a “Strong Democrat,” 4 an “Independent,” and 7 a “Strong Republican.” Respondents who indicated they “Lean” towards one party, or consider themselves a “Not very strong” Democrat or Republican were grouped with their preferred party (Petrocik, 2009). Therefore, values of V241227 in [1,3] are coded as Democrats, and values in [5,7] are coded as Republicans. Values indicating the respondent refused to answer, did not know, was an Independent, or had no preference for political affiliation have been excluded. [how many were excluded?]
+
+Question: Do Democratic and Republican voters have different views of education? We interpret “voters” as survey respondents who indicated they identified more with either the Democratic party or the Republican party, whether this affiliation was strong or weak. [if space – justify why this flattening of the term “voters"] One way voters’ (i.e., survey respondents who identify themselves as Republican or Democrat) views and values are expressed are through attitudes on government spending. The ANES includes questions on federal spending for Social Security and public schools. We propose to use attitudes towards government spending on public schools to be our proxy towards views on education more broadly; specifically, we assume that voters who prioritize education are more likely to have indicated that “Federal spending on public schools should be increased.” “Views of education” are far-reaching and nuanced, and cannot adequately be expressed through voting behavior alone; some voters may value education highly, but it may not be reflected at the ballot box because they are a single-issue voter (“32% of U.S. voters say they would only vote for a candidate for major office who shares their views on abortion,” says Gallup). Others may value education, but believe in private education rather than public schools. For operationalization, we use survey respondents’ reported attitudes towards federal spending on public schools, relative to other types of federal spending, as a proxy for views on education. The subject of government spending is itself a barometer of political affiliation (Johnson, 2018). Therefore, our test will measure respondents’ relative preference toward spending; in this case, on education or on other government programs (Social Security). We identify Republicans and Democrats via the feature V241227 (PARTY ID), which summarizes respondents’ party affiliation via a 1-7 scale: 1 indicates a “Strong Democrat,” 4 an “Independent,” and 7 a “Strong Republican.” Respondents who indicated they “Lean” towards one party, or consider themselves a “Not very strong” Democrat or Republican were grouped with their preferred party (Petrocik, 2009). Therefore, values of V241227 in [1,3] are coded as Democrats, and values in [5,7] are coded as Republicans. Values indicating the respondent refused to answer, did not know, was an Independent, or had no preference for political affiliation have been excluded. [how many were excluded?]
 
 # Data Wrangling
 
@@ -48,7 +43,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r load packages, include=FALSE}
 library(tidyverse) 
 library(stats)
-renv::snapshot()
+#renv::snapshot()
 ```
 
 ```{r set options, include=FALSE}
@@ -72,22 +67,20 @@ anes$Difference = anes$public_schools - anes$social_security
 #Split into democrats and republicans according to party affiliation summary variable
 democrats = anes %>% filter(V241227x %in% c(1,2,3))
 republicans = anes %>% filter(V241227x %in% c(5,6, 7))
-```
-
-```{r, include = FALSE, echo = FALSE}
-#Create histograms of difference by each party
-hist(democrats$Difference, breaks = 20)
 mean(democrats$Difference) #-0.17
 median(democrats$Difference) #0
-hist(republicans$Difference, breaks = 20)
 mean(republicans$Difference) # 0.14
 median(republicans$Difference)
 ```
 
+```{r,  echo = FALSE}
+#Create histograms of difference by each party
+hist(democrats$Difference, breaks = 20)
+hist(republicans$Difference, breaks = 20)
 
+```
 
-
-# Data Understanding 
+# Data Understanding
 
 The data for this analysis is based on the American National Election Studies (ANES) 2024 Time Series Study, a continuation of the series of election studies conducted since 1948. The study used a mixed-mode design including in-person, internet, video, telephone, and paper-and-pencil interviewing.
 
@@ -104,7 +97,6 @@ Let Xi​ = preference for **public school spending (**V241264)**, where:**
 -   2 = Kept the same
 
 -   3 = Decreased
-
 
 Let Yi​ = preference for **social security spending (**V241261)**,** with the same code as Xi
 
@@ -135,7 +127,6 @@ Assumption 1. (At least) Ordinal Scale - Xi and Yi are both measured on the same
 
 Assumption 2. IID - ANES respondents were sampled independently - Each paired responses are from the same respondents
 
-
 # Results
 
 ```{r, include = FALSE, echo = FALSE}
@@ -151,7 +142,7 @@ binom.test(sum(democrats$Difference < 0, na.rm = TRUE), n = sum(democrats$Differ
 #Sign test for republicans
 #Alternative hypothesis is public school response  > social security 
 #ie public school support < social security support
-binom.test(sum(republicans$Difference > 0, na.rm = TRUE), n = sum(republicans$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
+binom.test(sum(republicans$Difference > 0, na.rm = TRUE), n = sum(republicans$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater") 
 
 ```
 
