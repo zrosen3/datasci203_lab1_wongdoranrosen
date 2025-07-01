@@ -14,7 +14,7 @@ format:
 
 ---
 title: "Lab 1"
-author: "Jimmy, Gabrielle, and Zev" 
+author: "Jimmy Wong, Gabrielle Doran, and Zev Rosen" 
 date: "`r Sys.Date()`"
 date-format: short 
 format: 
