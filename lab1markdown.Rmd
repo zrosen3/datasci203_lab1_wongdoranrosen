@@ -105,7 +105,7 @@ Let Yi​ = preference for **social security spending (**V241261)**,** with the 
 
 Let Di = Xi - Yi, with interpretation:
 
--   (-) neagtive represents response to public schools is higher than response to social security: more support for schools
+-   (-) negative represents response to public schools is higher than response to social security: more support for schools
 
 -   0 represents public schools and social security  coded the same: equal support (both Increase, both Same, or both Decrease)
 
@@ -113,14 +113,23 @@ Let Di = Xi - Yi, with interpretation:
 
 Below are two histograms of the difference variable for democrats and republicans, respectively. For both republicans and democrats, the difference variable is most often zero. For republicans, the difference variable is more often positive than negative, and for democrats the difference is more often negative than positive. These charts indicate that democrats are more likely to exhibit more support for public school funding than social security funding, while republicans are more likely to exhibit more support for social security funding than public school funding.
 
-```{r, echo = FALSE, fig.width = 4, fig.height = 3.5}
+```{r, echo = FALSE, fig.width = 8, fig.height = 3.5}
 #Create histograms of difference by each party
-hist(democrats$Difference, breaks = 20)
+hist(democrats$Difference, breaks = 20,    
+     main = "Democrats: Schools vs Social Security",
+     xlab = "Difference (School - Social Security)",
+     ylab = "Frequency",
+     col = "lightblue")
 
 ```
 
-```{r, echo = FALSE, fig.width = 4, fig.height = 3.5}
-hist(republicans$Difference, breaks = 20)
+```{r, echo = FALSE, fig.width = 8, fig.height = 3.5}
+#Create histograms of difference by each party
+hist(republicans$Difference, breaks = 20,    
+     main = "Republicans: Schools vs Social Security",
+     xlab = "Difference (School - Social Security)",
+     ylab = "Frequency",
+     col = "red")
 
 ```
 
