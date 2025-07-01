@@ -32,19 +32,19 @@ Political division in the United States has intensified in the last two decades 
 
 In opposition to the inclusion of Critical Race Theory in American history education, sixteen Republican-led states have passed legislation banning CRT in public schools, with dozens more introducing similar measures (UCLA School of Law, 2023). These political and cultural trends reflect deeper, value-driven tensions beyond the classroom. What is the value of an American public education, or the purpose of one? Voters on different sides of the political spectrum may fundamentally disagree.
 
-This report explores whether Democratic and Republican voters hold significantly different views on education. We expect that Democrats will favor increasing federal spending on public schools more than increasing federal spending on social security, and we expect Republicans will favor increasing federal spending on social security more than increasing federal spending on public schools. Using the American National Election Studies (ANES) 2024 Time Series data, we assess whether there are statistically significant partisan differences in attitudes around public school funding. We establish two hypothesis tests using the paired Wilcoxon signed-rank test. More practically, within the current cultural polarization, we offer a perspective into how partisanship is reflected in attitudes around education.
+This report explores whether Democratic and Republican voters hold significantly different views on education. We expect that Democrats will favor increasing federal spending on public schools more than increasing federal spending on social security, and we expect Republicans will favor increasing federal spending on social security more than increasing federal spending on public schools. Using the American National Election Studies (ANES) 2024 Time Series data, we assess whether there are statistically significant partisan differences in attitudes around public school funding. We establish two hypothesis tests using the sign test. More practically, within the current cultural polarization, we offer a perspective into how partisanship is reflected in attitudes around education.
 
 # Conceptualization and Operationalization
 
 ### Question: Do Democratic and Republican voters have different views of education?
 
-We interpret “voters” as survey respondents who indicated they identified more with either the Democratic party or the Republican party, whether this affiliation was strong or weak. Respondents to the ANES are surveyed immediately before and after U.S. elections; a limitation of our analysis is that these respondents may or may not have been voters, but since they indicated a preference for a political party, we have categorized them as such (Petrocik, 2009). One way voters’ (i.e., survey respondents who identify themselves as leaning Republican or Democrat) views and values are expressed are through attitudes on government spending.
+We interpret “voters” as survey respondents who indicated they identified more with either the Democratic party or the Republican party, whether this affiliation was strong or weak. Respondents to the ANES are surveyed immediately before and after U.S. elections; a limitation of our analysis is that these respondents may or may not have been voters, but since they indicated a preference for a political party, we have categorized them as such (Petrocik, 2009). One way voters’ (i.e., survey respondents who identify themselves as leaning Republican or Democrat) views and values are expressed through attitudes on government spending.
 
 The ANES includes questions on federal spending for Social Security and public schools. Aversion to government spending is itself a barometer of political affiliation (Johnson, 2018). Therefore, we chose to use survey respondents’ reported attitudes towards federal spending on public schools, relative to other types of federal spending (social security), as a proxy for their views on education. We used attitudes towards government spending on public schools as our proxy on education more broadly; specifically, we assume that voters who prioritize education are more likely to have indicated that “Federal spending on public schools should be increased.” 
 
 “Views of education” are far-reaching and nuanced, and cannot adequately be expressed through voting behavior alone; some voters may value education highly, but may not reflect that in their voting behavior because they are a single-issue voter (“32% of U.S. voters say they would only vote for a candidate for major office who shares their views on abortion,” says [Gallup](https://news.gallup.com/poll/645836/record-share-electorate-pro-choice-voting.aspx)). Others may value education, but believe in private education rather than public schools.
 
-We identify Republicans and Democrats via the feature V241227 (PARTY ID), which summarizes respondents’ party affiliation via a 1-7 scale: 1 indicates a “Strong Democrat,” 4 an “Independent,” and 7 a “Strong Republican.” Respondents who indicated they “lean” towards one party, or consider themselves a “not very strong” Democrat or Republican were grouped with their preferred party. Therefore, values of V241227 in [1,3] are coded as Democrats, and values in [5,7] are coded as Republicans. Values indicating the respondent refused to answer, did not know, was an Independent, or had no preference for political affiliation have been excluded. We chose this feature to represent political affiliation because it is a summary variable, based on the respondent’s answers to multiple questions related to partisan attitudes. Additional details on data wrangling manipulation explained in Data Wrangling (next section).
+We identify Republicans and Democrats via the feature V241227 (PARTY ID), which summarizes respondents’ party affiliation via a 1-7 scale: 1 indicates a “Strong Democrat,” 4 an “Independent,” and 7 a “Strong Republican.” Respondents who indicated they “lean” towards one party, or consider themselves a “not very strong” Democrat or Republican were grouped with their preferred party. Therefore, values of V241227 in [1,3] are coded as Democrats, and values in [5,7] are coded as Republicans. Values indicating the respondent refused to answer, did not know, was an Independent, or had no preference for political affiliation have been excluded. We chose this feature to represent political affiliation because it is a summary variable, based on the respondent’s answers to multiple questions related to partisan attitudes. Additional details on data wrangling manipulation are explained in Data Wrangling (next section).
 
 # Data Wrangling
 
@@ -63,9 +63,9 @@ theme_set(theme_bw())
 knitr::opts_chunk$set(echo=FALSE, message=FALSE)
 ```
 
-We begin by downloading the 2024 time series data from the ANES website and loading it into RStudio. Since we are comparing paired ratings of public school (V241264) and social security (V241261) responses, we filter out "Refused", "Don't know", and "Inapplicable" values in both categories. We limit both variables to values 1 = Increased, 2 = Decreased, and 3 = Kept the same. However, to prepare the data for a sign test, we need to recode each variable. We recode both the public school and social security variables so that 1 = Increased, 2 = Kept the same, and 3 = Decreases, so the responses are ordinal from highest to lowest funding support.
+We begin by downloading the 2024 time series data from the ANES website and loading it into RStudio. Since we are comparing paired ratings of public school (V241264) and social security (V241261) responses, we filter out "Refused", "Don't know", and "Inapplicable" values in both categories. We limit both variables to values 1 = Increased, 2 = Decreased, and 3 = Kept the same. However, to prepare the data for a sign test, we need to recode each variable. We recode both the public school and social security variables so that 1 = Increased, 2 = Kept the same, and 3 = Decreased, so the responses are ordinal from highest to lowest funding support.
 
-We want to perform the test separately for democrats and republicans, so we split the data by the party ID summary variable (V241227x). We categorize strong, not very strong, and independent-democrats as democrats (and likewise for republicans). Finally, we want to investigate the difference between sentiments towards public school and social security spending, so we calculate our difference variable as public school rating - social security rating for each pair of responses (V241264 - V241261).
+We want to perform the test separately for Democrats and Republicans, so we split the data by the party ID summary variable (V241227x). We categorize strong, not very strong, and independent-Democrats as Democrats (and likewise for Republicans). Finally, we want to investigate the difference between sentiments towards public school and social security spending, so we calculate our difference variable as public school rating - social security rating for each pair of responses (V241264 - V241261).
 
 ```{r Data Wrangling, include = FALSE, echo = FALSE}
 anes <- read_csv(("anes_timeseries_2024_csv_20250430.csv"))
@@ -76,22 +76,22 @@ anes$public_schools <- c(1,3,2)[anes$V241264] #recode public schools
 anes$social_security<- c(1,3,2)[anes$V241261] #recode social security so 1 = increase, 2= same, 3 = decrease
 anes$Difference = anes$public_schools - anes$social_security
 
-#Split into democrats and republicans according to party affiliation summary variable
-democrats = anes %>% filter(V241227x %in% c(1,2,3))
-republicans = anes %>% filter(V241227x %in% c(5,6, 7))
-mean(democrats$Difference) #-0.17
-median(democrats$Difference) #0
-mean(republicans$Difference) # 0.14
-median(republicans$Difference)
+#Split into Democrats and Republicans according to party affiliation summary variable
+Democrats = anes %>% filter(V241227x %in% c(1,2,3))
+Republicans = anes %>% filter(V241227x %in% c(5,6, 7))
+mean(Democrats$Difference) #-0.17
+median(Democrats$Difference) #0
+mean(Republicans$Difference) # 0.14
+median(Republicans$Difference)
 ```
 
 # Data Understanding
 
 The data for this analysis is based on the American National Election Studies (ANES) 2024 Time Series Study, a continuation of the series of election studies conducted since 1948. The study used a mixed-mode design including in-person, internet, video, telephone, and paper-and-pencil interviewing.
 
-The study's target population is the U.S. citizens who were 18 or older living in the US immediately prior to the 2016 presidential election.
+The study's target population is the U.S. citizens who were 18 or older living in the US immediately prior to the 2024 presidential election.
 
-Respondents were asked a series of questions that relates to the respondents opinion on electoral behavior, policy attitudes, and demographic characteristics.
+Respondents were asked a series of questions that relates to the respondents' opinions on electoral behavior, policy attitudes, and demographic characteristics.
 
 # Test Set Up and Hypothesis:
 
@@ -109,15 +109,15 @@ Let Di = Xi - Yi, with interpretation:
 
 -   (-) negative represents response to public schools is higher than response to social security: more support for schools
 
--   0 represents public schools and social security  coded the same: equal support (both Increase, both Same, or both Decrease)
+-   0 represents public schools and social security coded the same: equal support (both Increase, both Same, or both Decrease)
 
 -   (+) positive represents response to social security is higher than response to public school: more support for social security
 
-Below are two histograms of the difference variable for democrats and republicans, respectively. For both republicans and democrats, the difference variable is most often zero. For republicans, the difference variable is more often positive than negative, and for democrats the difference is more often negative than positive. These charts indicate that democrats are more likely to exhibit more support for public school funding than social security funding, while republicans are more likely to exhibit more support for social security funding than public school funding.
+Below are two histograms of the difference variable for Democrats and Republicans, respectively. For both Republicans and Democrats, the difference variable is most often zero. For Republicans, the difference variable is more often positive than negative, and for Democrats the difference is more often negative than positive. These charts indicate that Democrats are more likely to exhibit more support for public school funding than social security funding, while Republicans are more likely to exhibit more support for social security funding than public school funding.
 
 ```{r, echo = FALSE, fig.width = 8, fig.height = 3.5}
 #Create histograms of difference by each party
-hist(democrats$Difference, breaks = 20,    
+hist(Democrats$Difference, breaks = 20,    
      main = "Democrats: Schools vs Social Security",
      xlab = "Difference (School - Social Security)",
      ylab = "Frequency",
@@ -127,7 +127,7 @@ hist(democrats$Difference, breaks = 20,
 
 ```{r, echo = FALSE, fig.width = 8, fig.height = 3.5}
 #Create histograms of difference by each party
-hist(republicans$Difference, breaks = 20,    
+hist(Republicans$Difference, breaks = 20,    
      main = "Republicans: Schools vs Social Security",
      xlab = "Difference (School - Social Security)",
      ylab = "Frequency",
@@ -152,38 +152,38 @@ Alternative hypothesis (H1): P(Di \<0) \| i in Republicans \< P(Di \>0) \| i in 
 
 # Test Selection and Evaluation of Assumptions
 
-We decided to use the Wilcoxon signed test (paired, one-sided) because this allows us to compare directional results from the same respondents. We favored the signed test instead of the signed-rank test as the responses are ordinal.
+We decided to use the sign test because this test allows us to compare directional results from the same respondents. We favored the signed test instead of the Wilcoxon signed-rank test as the responses are ordinal.
 
-Assumption 1. (At least) Ordinal Scale - Xi and Yi are both measured on the same ordinal scale - We recoded the the responses to natural order (1 = Increased , 2 = Kept the same , 3 = Decreased)
+Assumption 1. (At least) Ordinal Scale - Xi and Yi are both measured on the same ordinal scale - We recoded the responses to natural order (1 = Increased, 2 = Kept the same, 3 = Decreased)
 
 Assumption 2. IID - ANES respondents were sampled independently - Each paired response is from the same respondent
 
 # Test Results and Interpretation
 
 ```{r, include = FALSE, echo = FALSE}
-#Sign test for democrats
+#Sign test for Democrats
 #Alternative hypothesis is public school response  < social security 
 #Alternative hypothesis is  public school support > social security support 
 # Count number of negative differences
 
 # Total number of non-zero (non-tied) differences
-binom.test(sum(democrats$Difference < 0, na.rm = TRUE), n = sum(democrats$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
+binom.test(sum(Democrats$Difference < 0, na.rm = TRUE), n = sum(Democrats$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater")
 
 
-#Sign test for republicans
+#Sign test for Republicans
 #Alternative hypothesis is public school response  > social security 
 #ie public school support < social security support
-binom.test(sum(republicans$Difference > 0, na.rm = TRUE), n = sum(republicans$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater") 
+binom.test(sum(Republicans$Difference > 0, na.rm = TRUE), n = sum(Republicans$Difference != 0, na.rm = TRUE), p = 0.5, alternative = "greater") 
 
 ```
 
-The Wilcoxon signed tests (in R, the binomial sign tests above) uncovered that when respondents had differing views on public school and social security spending, political affiliation mattered:
+The sign tests (in R, the binomial sign tests above) uncovered that when respondents had differing views on public school and social security spending, political affiliation mattered.
 
-For Democratic respondents, 617 out of 823 non-tied responses favored increased government spending on public schools over social security. It is unlikely that 75% of Democratic respondents would indicate their preference for public school spending if Democrats overall didn't truly prefer social security or public schools; in fact, the p-value for this result is less than $2.20 * 10^-16$ – small enough to reject the null hypothesis, or to suggest that Democrats truly are more likely to favor education spending over social security.
+For Democratic respondents, 617 out of 823 non-tied responses favored increased government spending on public schools over social security. It is unlikely that 75% of Democratic respondents would indicate their preference for public school spending if the null hypothesis of equal preferences were true; in fact, the p-value for this result is less than $2.20 \times 10^-16$. This p-value is small enough to reject the null hypothesis and provides evidence for a partisan preference among Democrats for public school funding.
 
-For Republicans, 654 out of 1080, or about 61%, of non-tied respondents favored social security spending over public schools. The likelihood of this outcome occurring if Republicans didn't truly prefer social security or public schools is about $2.07 * 10^-12$, which is also statistically significant. This suggests that Republicans show a measurable preference for federal spending on social security over education.
+For Republicans, 654 out of 1080, or about 61%, of non-tied respondents favored social security spending over public schools. The likelihood of this outcome occurring if the null hypothesis were true is about $2.07 \times 10^-12$, which is statistically significant and allows us to reject the null hypothesis. This test provides evidence of a Republican preference for social security funding over education.
 
-We see that Republicans favored social security, and Democrats favored public schools by a wider margin than Republicans favored social security. In these tests, to understand the practical effect size, we observe the difference from the null, or 0.5: at 0.25 for Democrats and 0.11 for Republicans, Democrats more strongly favored public schools than Republicans favored social security, and Democrats significantly more strongly prioritize public schools for federal budget spending. Together, these suggest that not only do Republicans and Democrats show clear preferences in federal spending, these preferences seem to reflect a meaningful partisan divide in values.
+We see that Republicans favored social security, and Democrats favored public schools by a wider margin than Republicans favored social security. In these tests, to understand the practical effect size, we observe the difference from the null, or 0.5: at 0.25 for Democrats and 0.11 for Republicans, Democrats more strongly favored public schools than Republicans favored social security, and Democrats more strongly prioritize public schools for federal budget spending. Together, these suggest that not only do Republicans and Democrats show clear preferences in federal spending, these preferences seem to reflect a meaningful partisan divide in values.
 
 \newpage
 
