@@ -53,7 +53,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r load packages, include=FALSE}
 library(tidyverse) 
 library(stats)
-#renv::snapshot()
+renv::snapshot()
 ```
 
 ```{r set options, include=FALSE}
@@ -83,13 +83,6 @@ mean(republicans$Difference) # 0.14
 median(republicans$Difference)
 ```
 
-```{r,  echo = FALSE}
-#Create histograms of difference by each party
-hist(democrats$Difference, breaks = 20)
-hist(republicans$Difference, breaks = 20)
-
-```
-
 # Data Understanding
 
 The data for this analysis is based on the American National Election Studies (ANES) 2024 Time Series Study, a continuation of the series of election studies conducted since 1948. The study used a mixed-mode design including in-person, internet, video, telephone, and paper-and-pencil interviewing.
@@ -117,6 +110,23 @@ Let Di = Xi - Yi, with interpretation:
 -   0 represents public schools and social security  coded the same: equal support (both Increase, both Same, or both Decrease)
 
 -   (+) positive represents response to social security is higher than response to public school: more support for social security
+
+Below are two histograms of the difference variable for democrats and republicans, respectively. For both republicans and democrats, the difference variable is most often zero. For republicans, the difference variable is more often positive than negative, and for democrats the difference is more often negative than positive. These charts indicate that democrats are more likely to exhibit more support for public school funding than social security funding, while republicans are more likely to exhibit more support for social security funding than public school funding.
+
+```{r, echo = FALSE, fig.width = 4, fig.height = 3.5}
+#Create histograms of difference by each party
+hist(democrats$Difference, breaks = 20)
+
+```
+
+```{r, echo = FALSE, fig.width = 4, fig.height = 3.5}
+hist(republicans$Difference, breaks = 20)
+
+```
+
+\newpage
+
+We designed two tests to check whether these observations hold up under rigorous statistical scrutiny.
 
 **Test 1:**
 
@@ -163,6 +173,8 @@ For Democratic respondents, 617 out of 823 non-tied responses favored increased 
 For Republicans, 654 out of 1080, or about 61%, of non-tied respondents favored social security spending over public schools. The likelihood of this outcome occurring if Republicans didn't truly prefer social security or public schools is about $2.07 * 10^-12$, which is also statistically significant. This suggests that Republicans show a measurable preference for federal spending on social security over education.
 
 We see that Republicans favored social security, and Democrats favored public schools by a wider margin than Republicans favored social security. In these tests, to understand the practical effect size, we observe the difference from the null, or 0.5: at 0.25 for Democrats and 0.11 for Republicans, Democrats more strongly favored public schools than Republicans favored social security, and Democrats significantly more strongly prioritize public schools for federal budget spending. Together, these suggest that not only do Republicans and Democrats show clear preferences in federal spending, these preferences seem to reflect a meaningful partisan divide in values.
+
+\newpage
 
 # Works Cited
 
