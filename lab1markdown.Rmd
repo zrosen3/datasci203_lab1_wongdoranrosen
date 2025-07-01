@@ -63,7 +63,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE)
 
 We begin by downloading the 2024 time series data from the ANES website and loading it into RStudio. Since we are comparing paired ratings of public school (V241264) and social security (V241261) responses, we filter out "Refused", "Don't know", and "Inapplicable" values in both categories. We limit both variables to values 1 = Increased, 2 = Decreased, and 3 = Kept the same. However, to prepare the data for a sign test, we need to recode each variable. We recode both the public school and social security variables so that 1 = Increased, 2 = Kept the same, and 3 = Decreases, so the responses are ordinal from highest to lowest funding support.
 
-We want to perform the test separately for democrats and republicans, so we split the data by the party ID summary variable (V241227x). We categorize strong, not very strong, and independent-democrats as democrats (and likewise for republicans).Finally, we want to investigate the difference between sentiments towards public school and social security spending, so we calculate our difference variable as public school rating - social security rating for each pair of responses (V241264 - V241261).
+We want to perform the test separately for democrats and republicans, so we split the data by the party ID summary variable (V241227x). We categorize strong, not very strong, and independent-democrats as democrats (and likewise for republicans). Finally, we want to investigate the difference between sentiments towards public school and social security spending, so we calculate our difference variable as public school rating - social security rating for each pair of responses (V241264 - V241261).
 
 ```{r Data Wrangling, include = FALSE, echo = FALSE}
 anes <- read_csv(("anes_timeseries_2024_csv_20250430.csv"))
@@ -154,7 +154,7 @@ We decided to use the Wilcoxon signed test (paired, one-sided) because this allo
 
 Assumption 1. (At least) Ordinal Scale - Xi and Yi are both measured on the same ordinal scale - We recoded the the responses to natural order (1 = Increased , 2 = Kept the same , 3 = Decreased)
 
-Assumption 2. IID - ANES respondents were sampled independently - Each paired responses are from the same respondents
+Assumption 2. IID - ANES respondents were sampled independently - Each paired response is from the same respondent
 
 # Test Results and Interpretation
 
