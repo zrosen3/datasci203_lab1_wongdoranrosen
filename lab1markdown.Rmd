@@ -28,13 +28,9 @@ editor: visual
 
 # Introduction
 
-Political division in the United States has intensified in the last two decades (Abramowitz & Saunders, 2008; Jones, 2024).
+Political division in the United States has intensified in the last two decades (Abramowitz & Saunders, 2008; Jones, 2024). As polarization accelerates in the U.S. political climate, it seems nothing is off-limits from the creeping influence of intense partisanship. Since 2020, education itself has become an ideological battleground, with divisive curriculum initiatives for public schools gaining legislative momentum across both red and blue states.
 
-As polarization accelerates in the U.S. political climate, it seems nothing is off-limits from the creeping influence of intense partisanship. Since 2020, education itself has become an ideological battleground, with divisive curriculum initiatives for public schools gaining legislative momentum across both red and blue states.
-
-In opposition to the inclusion of Critical Race Theory in American history education, sixteen Republican-led states have passed legislation banning CRT in public schools, with dozens more introducing similar measures (UCLA School of Law, 2023).
-
-These political and cultural trends reflect deeper, value-driven tensions beyond the classroom. What is the value of an American public education, or the purpose of one? Voters on different sides of the political spectrum may fundamentally disagree.
+In opposition to the inclusion of Critical Race Theory in American history education, sixteen Republican-led states have passed legislation banning CRT in public schools, with dozens more introducing similar measures (UCLA School of Law, 2023). These political and cultural trends reflect deeper, value-driven tensions beyond the classroom. What is the value of an American public education, or the purpose of one? Voters on different sides of the political spectrum may fundamentally disagree.
 
 This report explores whether Democratic and Republican voters hold significantly different views on education. We expect that Democrats will favor increasing federal spending on public schools more than increasing federal spending on social security, and we expect Republicans will favor increasing federal spending on social security more than increasing federal spending on public schools. Using the American National Election Studies (ANES) 2024 Time Series data, we assess whether there are statistically significant partisan differences in attitudes around public school funding. We establish two hypothesis tests using the paired Wilcoxon signed-rank test. More practically, within the current cultural polarization, we offer a perspective into how partisanship is reflected in attitudes around education.
 
