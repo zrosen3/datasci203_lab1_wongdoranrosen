@@ -14,6 +14,7 @@ format:
 
 ---
 title: "Lab 1"
+subtitle: "Repository: https://github.com/zrosen3/datasci203_lab1_wongdoranrosen.git"
 author: "Jimmy, Gabrielle, and Zev" 
 date: "`r Sys.Date()`"
 date-format: short 
